@@ -1,1 +1,5 @@
 bash = bourne-again Shell
+
+git
+make change and then get back
+git checkout HEAD filename
