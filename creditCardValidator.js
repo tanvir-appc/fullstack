@@ -1,3 +1,9 @@
+/*
+MOST IMPORTANT LINE
+let tempArr = arr.slice()
+THIS CLONES AN ARRAY TO A NEW ARRAY
+IF WE ASSIGN DIRECTLY, THEN ONLY THE REFERENCE WILL GET COPIED
+*/
 // All valid credit card numbers
 const valid1 = [4, 5, 3, 9, 6, 7, 7, 9, 0, 8, 0, 1, 6, 8, 0, 8];
 const valid2 = [5, 5, 3, 5, 7, 6, 6, 7, 6, 8, 7, 5, 1, 4, 3, 9];
@@ -44,7 +50,40 @@ const validateCred = arr => {
 }
 
 const findInvalidCards = arr => {
-  return arr.filter(card => validateCred(card))
+  return arr.filter(card => !validateCred(card))
 }
 
-console.log(findInvalidCards(batch))
+
+const idInvalidCardCompanies = arr => {
+  const companyList = {
+    three:"Amex (American Express)",
+    four:"Visa",
+    five:"Mastercard",
+    six:"Discover"
+  }
+  let foundCompanies = {}
+  for(let i=0;i<arr.length;i++){
+    switch(arr[i][0]){
+      case 3:
+        foundCompanies.three = companyList.three
+        break;
+      case 4:
+        foundCompanies.four = companyList.four
+        break;
+      case 5:
+        foundCompanies.five = companyList.five
+        break;
+      case 6:
+        foundCompanies.six = companyList.six
+        break;
+      default:
+        foundCompanies.not_found = "Company not found"
+        break;
+    }
+  }
+  for(let cinfo in foundCompanies){
+    console.log(foundCompanies[cinfo])
+  }
+}
+
+idInvalidCardCompanies(findInvalidCards(batch))
